@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Surprise 💖</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url("db.jpg") no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Falling Hearts */
+    .heart {
+      position: absolute;
+      top: -20px;
+      font-size: 18px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        transform: translateY(110vh) scale(1.4);
+      }
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.55);
+      padding: 30px;
+      border-radius: 25px;
+      text-align: center;
+      width: 90%;
+      max-width: 420px;
+      color: white;
+      box-shadow: 0 0 25px rgba(255,255,255,0.25);
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .teddy {
+      width: 160px;
+      margin: 15px auto;
+      display: block;
+      border-radius: 20px;
+      box-shadow: 0 0 18px rgba(255,255,255,0.25);
+    }
+
+    #shortMsg {
+      font-family: 'Dancing Script', cursive;
+      font-size: 21px;
+      line-height: 1.7;
+      margin-top: 15px;
+      min-height: 120px;
+      white-space: pre-wrap;
+    }
+
+    /* Dreamy Heartbeat Button */
+    button {
+      margin-top: 25px;
+      padding: 14px 34px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #ffb6c1, #ffe6f0);
+      color: #3a1c1c;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 18px rgba(255,182,193,0.8);
+      transition: 0.4s;
+      display: none;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255,182,193,1);
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+
+    #giftSection {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #message {
+      font-family: 'Dancing Script', cursive;
+      font-size: 22px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      margin-top: 15px;
+      min-height: 180px;
+    }
+
+    .signature {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      font-family: 'Pacifico', cursive;
+      font-size: 18px;
+      color: white;
+      opacity: 0.85;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Falling Hearts Container -->
+  <script>
+    function createHearts() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💗";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      heart.style.fontSize = (14 + Math.random() * 10) + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHearts, 400);
+  </script>
+
+
+  <div class="card">
+
+    <h1>Happy Birthday My Man 🎂❤️</h1>
+    <h2>This is for you my Teddy 🧸</h2>
+
+    <img src="db.jpg" class="teddy">
+
+    <!-- Short Message Auto Typing -->
+    <p id="shortMsg"></p>
+
+    <!-- Gift Button -->
+    <button id="giftBtn" onclick="openGift()">🎁 Tap to Reveal My Love</button>
+
+    <!-- Hidden Gift Section -->
+    <div id="giftSection">
+      <p id="message"></p>
+      <audio id="bgm" src="song.mp3"></audio>
+    </div>
+
+  </div>
+
+  <!-- Signature -->
+  <div class="signature">Yours Affi Forever 💞</div>
+
+
+  <script>
+    /* Short Intro Message */
+    const shortText =
+`Happy Birthday Thngm 💖  
+Today is all about your smile…  
+I made this little surprise  
+just to remind you…  
+you are deeply loved 🥺✨`;
+
+    let s = 0;
+
+    function typeShort() {
+      if (s < shortText.length) {
+        document.getElementById("shortMsg").innerHTML += shortText.charAt(s);
+        s++;
+        setTimeout(typeShort, 50);
+      } else {
+        document.getElementById("giftBtn").style.display = "inline-block";
+      }
+    }
+
+    window.onload = typeShort;
+
+
+    /* Long Love Letter */
+    const longMessage =
+`My love… 💖
+
+From the very beginning, you have been my safest place,
+my happiest feeling, and my greatest blessing.
+
+I know life hasn’t always been easy…
+but I want you to remember something:
+
+You will never face anything alone again.
+
+I believe in you more than words can ever explain.
+Every dream you carry inside your heart…
+I know you will achieve them.
+
+And until that day comes,
+I’ll be right beside you —
+supporting you, loving you, and holding you close.
+
+Happy Birthday My Man🧸❤️
+
+Forever Yours,
+Affi💞`;
+
+    let i = 0;
+
+    function openGift() {
+      document.getElementById("giftSection").style.display = "block";
+
+      // Play Music
+      document.getElementById("bgm").play();
+
+      // Start Typing Letter
+      typeWriter();
+    }
+
+    function typeWriter() {
+      if (i < longMessage.length) {
+        document.getElementById("message").innerHTML += longMessage.charAt(i);
+        i++;
+        setTimeout(typeWriter, 45);
+      }
+    }
+  </script>
+
+</body>
+</html>
